@@ -93,24 +93,35 @@ class TestSolver(unittest.TestCase):
         self.assertEqual(solution, False)
 
     def test_raises_an_error_for_non_square_problems(self):
-        non_square_problem = [
+        invalid_problem = [
             [0,0,0],
             [0,0,0]
         ]
 
-        solver = Solver(non_square_problem)
+        solver = Solver(invalid_problem)
 
         with self.assertRaises(InvalidProblemError):
             solver.solve()
 
 
     def test_raises_an_error_when_the_size_is_not_a_square(self):
-        invalid_sized_problem = [
+        invalid_problem = [
             [0,0],
             [0,0]
         ]
 
-        solver = Solver(invalid_sized_problem)
+        solver = Solver(invalid_problem)
+
+        with self.assertRaises(InvalidProblemError):
+            solver.solve()
+
+    def test_raises_an_error_when_a_row_is_not_a_list(self):
+        invalid_problem = [
+            '00',
+            [0,0]
+        ]
+
+        solver = Solver(invalid_problem)
 
         with self.assertRaises(InvalidProblemError):
             solver.solve()

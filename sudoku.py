@@ -8,11 +8,36 @@ class InvalidProblemError(Exception):
 
     1) The problem is not a square grid
     2) The problem size is not a square number
+    3) The problem has a row that is not a list
     """
 
 
+def import_problems(filename, problem_size = 9):
+    """A method for parsing problems from a file. In the file each line must 
+    be a string of integers encoding a problem, where the order of the digits is
+    that of a walk through the grid from left to right and top to bottom.
+
+    Args:
+        filename (str): The location of the problems.
+        problem_size (int, optional): The size of the sudoku grids encoded in
+            the file.
+    """
+    file = open(filename, 'r')
+    problems = []
+
+    for line in file:
+        line = line.strip()
+        problem = []
+        for i in range(0, len(line), problem_size):
+            row = [int(character) for character in list(line[i: i+problem_size])]
+            problem.append(row)
+        problems.append(problem)
+
+    return problems
+
+
 class Solver:
-    """A class for solving sudoku puzzles.
+    """A class for solving sudoku problems.
     """
 
     def __init__(self, problem):
@@ -71,6 +96,9 @@ class Solver:
             raise InvalidProblemError('problem size is not a square')
 
         for row in self.problem:
+            if not isinstance(row, list):
+                raise InvalidProblemError('problem is not a list of lists')
+
             number_of_columns = len(row)
             if self.size != number_of_columns:
                 raise InvalidProblemError('problem is not a square grid')
