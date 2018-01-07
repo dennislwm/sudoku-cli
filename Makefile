@@ -1,14 +1,12 @@
-install: clean
+install:
+	@rm -rf *.egg-info
 	@pip install --editable .
 
 requirements:
 	@pip install -r requirements.txt
 
-test: clean
+test:
+	@rm -f .coverage
 	@coverage run --source=sudoku/ -m unittest discover -s tests/
 	@coverage report -m
-	@flake8 sudoku/
-
-clean:
-	@rm -rf *.egg-info
-	@rm -f .coverage
+	@flake8 cli.py sudoku/

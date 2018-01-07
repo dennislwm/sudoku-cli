@@ -9,9 +9,9 @@ from sudoku.solver import Solver
 @click.command()
 @click.option(
     '--input_file',
-    '-i', 
+    '-i',
     required=True,
-    type=str, 
+    type=str,
     help='File containing encoded sudoku problems.'
 )
 @click.option(
@@ -21,7 +21,7 @@ from sudoku.solver import Solver
     help='File to write solutions to.'
 )
 def sudoku(input_file, output_file):
-    """A command line tool for taking a file encoding sudoku problems and 
+    """A command line tool for taking a file encoding sudoku problems and
     writing their solutions to either stdout (by default) or an output file.
     """
     problems = from_file(input_file)
