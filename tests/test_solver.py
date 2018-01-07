@@ -3,29 +3,8 @@ import unittest
 import copy
 
 # local imports
-import sudoku
-from sudoku import Solver, InvalidProblemError
-
-
-class TestSerialization(unittest.TestCase):
-    def test_it_serializes_correctly(self):
-        grid = [
-            [2,0],
-            [0,1]
-        ]
-
-        self.assertEqual(sudoku.serialize(grid), '2001')
-
-    def test_it_deserializes_correctly(self):
-        string = '2001'
-        expected_grid = [
-            [2,0],
-            [0,1]
-        ]
-
-        grid = sudoku.deserialize(string, size = 2)
-
-        self.assertEqual(grid, expected_grid)
+from sudoku.solver import Solver
+from sudoku.exceptions import InvalidProblemError
 
 
 class TestSolver(unittest.TestCase):
@@ -60,16 +39,16 @@ class TestSolver(unittest.TestCase):
 
     def test_it_solves_correctly_for_other_sizes(self):
         problem = [
-            [0, 1, 0, 0],
-            [4, 0, 0, 3],
-            [1, 0, 0, 2],
-            [0, 0, 3, 0]
+            [0,1,0,0],
+            [4,0,0,3],
+            [1,0,0,2],
+            [0,0,3,0]
         ]
         expected_solution = [
-            [3, 1, 2, 4],
-            [4, 2, 1, 3],
-            [1, 3, 4, 2],
-            [2, 4, 3, 1]
+            [3,1,2,4],
+            [4,2,1,3],
+            [1,3,4,2],
+            [2,4,3,1]
         ]
 
         solver = Solver(problem)
@@ -147,6 +126,7 @@ class TestSolver(unittest.TestCase):
 
         with self.assertRaises(InvalidProblemError):
             solver.solve(validate=True)
+
 
 if __name__ == '__main__':
     unittest.main()
