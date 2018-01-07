@@ -1,2 +1,3 @@
 test:
-	@python -m unittest discover tests
+	@coverage run --source=sudoku/ -m unittest discover -s tests/
+	@coverage report -m
