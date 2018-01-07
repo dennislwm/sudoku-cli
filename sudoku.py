@@ -3,6 +3,81 @@ import copy
 import math
 
 
+def from_file(filename, problem_size = 9):
+    """Creates sudoku problems from a file.
+
+    Args:
+        filename (str): A file that contains one line per problem. All problems 
+            must be the same size. The line consists of ints in 0-9, where 0 
+            denotes an empty cell and any other number is a filled cell. The 
+            cells in the string are ordered top to bottom and left to right.
+
+        problem_size (int): A number specifying the size of the sudoku grids in
+            the given file.
+
+    Returns:
+        list: A list of the sudoku problems defined in the file.
+    """
+    with open(filename, 'r') as file:
+        return [deserialize(line.strip(), problem_size) for line in file]
+
+
+def to_file(solutions, output_filename):
+    """Writes sudoku solutions to a file.
+
+    Args:
+        solutions (list of solutions): The list of solutions to be written in 
+            the standard form.
+
+        output_filename (str): The file that will be overwritten with the 
+            solutions in the standard format specified above.
+    """
+    with open(output_filename, 'w') as file:
+        for i in range(len(solutions)):
+            file.write(serialize(solutions[i]))
+            if i < len(solutions) - 1:
+                file.write('\n')
+
+
+def serialize(grid):
+    """Serializes sudoku grids into a string.
+    
+    Args:
+        grid (list of lists of ints): This list characterizes a sudoku 
+            grid. The ints are in 0-9, where 0 denotes an empty cell and any
+            other number is a filled cell.
+        
+    Returns:
+        str: This string represents a walk through the grid from top to bottom 
+            and left to right.
+    """
+    string = ''
+    for row in grid:
+        for cell in row:
+            string += str(cell)
+
+    return string
+
+
+def deserialize(string, size):
+    """Deserializes sudoku grid strings into lists.
+
+    Args:
+        string (str): This string represents a sudoku grid in the standard 
+        format.
+
+        size (int): A number specifying the size of the sudoku grid 
+        encoded in `string`.
+    """
+    grid = []
+    for i in range(0, len(string), size):
+        cell_characters = list(string[i:i+size])
+        row = [int(character) for character in cell_characters]
+        grid.append(row)
+
+    return grid
+
+
 class InvalidProblemError(Exception):
     """An exception raised when:
 
@@ -10,30 +85,7 @@ class InvalidProblemError(Exception):
     2) The problem size is not a square number
     3) The problem has a row that is not a list
     """
-
-
-def import_problems(filename, problem_size = 9):
-    """A method for parsing problems from a file. In the file each line must 
-    be a string of integers encoding a problem, where the order of the digits is
-    that of a walk through the grid from left to right and top to bottom.
-
-    Args:
-        filename (str): The location of the problems.
-        problem_size (int, optional): The size of the sudoku grids encoded in
-            the file.
-    """
-    file = open(filename, 'r')
-    problems = []
-
-    for line in file:
-        line = line.strip()
-        problem = []
-        for i in range(0, len(line), problem_size):
-            row = [int(character) for character in list(line[i: i+problem_size])]
-            problem.append(row)
-        problems.append(problem)
-
-    return problems
+    pass
 
 
 class Solver:
@@ -41,8 +93,7 @@ class Solver:
     """
 
     def __init__(self, problem):
-        """
-        Initializes the solver class with a given problem. The solution is 
+        """Initializes the solver class with a given problem. The solution is 
         initialized as a deep copy of the problem to avoid altering it during 
         the solving process. It also initializes the problem size and box size 
         for later use.
@@ -57,12 +108,15 @@ class Solver:
         self.box_size = int(math.sqrt(self.size))
         self.solution = copy.deepcopy(problem)
 
-    def solve(self):
+    def solve(self, validate=False):
         """Attempts to solves the sudoku problem recursively with backtracking. 
         We attempt to fill in each empty cell successively with one of the 
         available options, and return to change previous cells if we are no 
         longer able to make valid moves. Having made only valid moves, we stop
         when the grid is completely filled.
+
+        Args:
+            validate (bool): Determines whether to validate the problem.
 
         Returns:
             The solution grid if successful, False otherwise.
@@ -70,7 +124,8 @@ class Solver:
         Raises:
             InvalidProblemError: If `problem` isn't a valid sudoku grid.
         """
-        self._validate_problem()
+        if validate:
+            self._validate_problem()
 
         next_empty_cell = self._next_empty_cell()
 
@@ -133,10 +188,10 @@ class Solver:
         return False
 
     def _find_box(self, row, column):
-        box_row_start = (row / self.box_size) * self.box_size
+        box_row_start = (row // self.box_size) * self.box_size
         box_rows = range(box_row_start, box_row_start + self.box_size)
 
-        box_column_start = (column / self.box_size) * self.box_size
+        box_column_start = (column // self.box_size) * self.box_size
         box_columns = range(box_column_start, box_column_start + self.box_size)
 
         return (box_rows, box_columns)
