@@ -2,18 +2,38 @@
 import click
 
 # local imports
-from sudoku.io import from_file, to_file
+from sudoku.io import from_file, to_file, to_stdout
 from sudoku.solver import Solver
 
 
 @click.command()
-@click.option('--input_file', required=True)
-@click.option('--output_file', default='solutions.txt')
+@click.option(
+    '--input_file',
+    '-i', 
+    required=True,
+    type=str, 
+    help='File containing encoded sudoku problems.'
+)
+@click.option(
+    '--output_file',
+    '-o',
+    type=str,
+    help='File to write solutions to.'
+)
 def sudoku(input_file, output_file):
+    """A command line tool for taking a file encoding sudoku problems and 
+    writing their solutions to either stdout (by default) or an output file.
+    """
     problems = from_file(input_file)
-    solutions = []
+    if output_file:
+        solutions = []
 
     for problem in problems:
-        solutions.append(Solver(problem).solve(validate=True))
+        solution = Solver(problem).solve(validate=True)
+        if output_file:
+            solutions.append(solution)
+        else:
+            to_stdout(solution)
 
-    to_file(solutions, output_file)   
+    if output_file:
+        to_file(solutions, output_file)

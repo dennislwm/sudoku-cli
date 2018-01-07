@@ -3,7 +3,7 @@ import copy
 import math
 
 # local imports
-from exceptions import InvalidProblemError
+from .exceptions import InvalidProblemError
 
 
 class Solver:
@@ -11,15 +11,15 @@ class Solver:
     """
 
     def __init__(self, problem):
-        """Initializes the solver class with a given problem. The solution is 
-        initialized as a deep copy of the problem to avoid altering it during 
-        the solving process. It also initializes the problem size and box size 
+        """Initializes the solver class with a given problem. The solution is
+        initialized as a deep copy of the problem to avoid altering it during
+        the solving process. It also initializes the problem size and box size
         for later use.
 
         Args:
-            problem (list of lists of ints): This list characterizes a sudoku 
-                grid. The ints are in 0-9, where 0 denotes an empty cell and any
-                other number is a filled cell.
+            problem (list of lists of ints): This list characterizes a sudoku
+                grid. The ints are in 0-9, where 0 denotes an empty cell and
+                any other number is a filled cell.
         """
         self.problem = problem
         self.size = len(self.problem)
@@ -27,9 +27,9 @@ class Solver:
         self.solution = copy.deepcopy(problem)
 
     def solve(self, validate=False):
-        """Attempts to solves the sudoku problem recursively with backtracking. 
-        We attempt to fill in each empty cell successively with one of the 
-        available options, and return to change previous cells if we are no 
+        """Attempts to solves the sudoku problem recursively with backtracking.
+        We attempt to fill in each empty cell successively with one of the
+        available options, and return to change previous cells if we are no
         longer able to make valid moves. Having made only valid moves, we stop
         when the grid is completely filled.
 
@@ -57,7 +57,7 @@ class Solver:
                 self.solution[row][column] = number
 
                 if self.solve():
-                   return self.solution 
+                    return self.solution
                 else:
                     self.solution[row][column] = 0
 

@@ -1,5 +1,4 @@
 from setuptools import setup
-# To use a consistent encoding
 from codecs import open
 from os import path
 
@@ -21,8 +20,9 @@ setup(
     install_requires=[
         'Click',
     ],
+    python_requires='>=3',
     extras_require={
-        'test': ['coverage'],
+        'test': ['coverage', 'flake8'],
     },
     entry_points='''
         [console_scripts]
