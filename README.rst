@@ -54,7 +54,7 @@ So this board:
   |7,0,6| |0,0,0| |8,1,0|
   |3,0,0| |0,9,0| |0,0,0|
 
-Would be encoded by the string
+Would be encoded by this string:
 
 ::
 
