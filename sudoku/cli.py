@@ -1,3 +1,6 @@
+# stdlib imports
+import sys
+
 # third-party imports
 import click
 
@@ -38,9 +41,12 @@ def sudoku(input_file, output_file, size):
     for problem in problems:
         solution = Solver(problem).solve()
         if output_file:
+            sys.stdout.write('.')
+            sys.stdout.flush()
             solutions.append(solution)
         else:
             to_stdout(solution)
 
     if output_file:
+        print()
         to_file(solutions, output_file)
