@@ -27,6 +27,9 @@ def deserialize(string, size):
 
         size (int): A number specifying the size of the sudoku grid
         encoded in `string`.
+
+    Returns:
+        list: The list representing the grid from `string`.
     """
     grid = []
     for i in range(0, len(string), size):

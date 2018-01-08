@@ -65,3 +65,26 @@ output_file
 By default the output of the command is piped to stdout but if an output file 
 is specified the solutions will be written to that file encoded in the 
 standard format.
+
+Development
+===========
+
+A Makefile is included to simplify the running of some common commands. 
+
+To install the requirements for local development:
+
+::
+
+  make requirements
+
+To run the tests along with a coverage report and linting:
+
+::
+
+  make test
+
+To install the package locally for testing:
+
+::
+
+  make install
