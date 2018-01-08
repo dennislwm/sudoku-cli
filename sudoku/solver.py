@@ -70,7 +70,7 @@ class Solver:
 
         for row in self.problem:
             if not isinstance(row, list):
-                raise InvalidProblemError('problem is not a list of lists')
+                raise InvalidProblemError('problem row is not well defined')
 
             number_of_columns = len(row)
             if self.size != number_of_columns:
