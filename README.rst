@@ -20,12 +20,13 @@ The help page for the ``sudoku`` command is a good overview:
 
   Usage: sudoku [OPTIONS]
 
-    A command line tool for taking a file encoding sudoku problems and
-    writing their solutions to either stdout (by default) or an output file.
+    A command line tool for taking a file encoding sudoku problems and writing
+    their solutions to either stdout (by default) or an output file.
 
   Options:
     -i, --input_file TEXT   File containing encoded sudoku problems.  [required]
     -o, --output_file TEXT  File to write solutions to.
+    -s, --size INTEGER      Size of the encoded sudoku problems. Defaults to 9.
     --help                  Show this message and exit.
 
 
