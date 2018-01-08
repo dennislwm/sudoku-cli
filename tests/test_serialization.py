@@ -1,6 +1,5 @@
 # stdlib imports
 import unittest
-import copy
 
 # local imports
 from sudoku.serialization import serialize, deserialize
@@ -22,9 +21,10 @@ class TestSerialization(unittest.TestCase):
             [0,1]
         ]
 
-        grid = deserialize(string, size = 2)
+        grid = deserialize(string, size=2)
 
         self.assertEqual(grid, expected_grid)
+
 
 if __name__ == '__main__':
     unittest.main()

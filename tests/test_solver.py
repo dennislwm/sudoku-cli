@@ -71,7 +71,7 @@ class TestSolver(unittest.TestCase):
         original_problem = copy.deepcopy(problem)
 
         solver = Solver(problem)
-        solution = solver.solve()
+        solver.solve()
 
         self.assertEqual(problem, original_problem)
 
@@ -103,7 +103,6 @@ class TestSolver(unittest.TestCase):
 
         with self.assertRaises(InvalidProblemError):
             solver.solve(validate=True)
-
 
     def test_raises_an_error_when_the_size_is_not_a_square(self):
         invalid_problem = [

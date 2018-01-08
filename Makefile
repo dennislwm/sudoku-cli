@@ -13,7 +13,7 @@ test:
 	@rm -f .coverage
 	@coverage run --source=sudoku/ -m unittest discover -s tests/
 	@coverage report -m
-	@flake8 sudoku/
+	@flake8 --ignore=E231 sudoku/ tests/ benchmarks/
 
 benchmark:
 	@python benchmarks/benchmarks.py

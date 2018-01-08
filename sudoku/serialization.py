@@ -33,7 +33,7 @@ def deserialize(string, size):
     """
     grid = []
     for i in range(0, len(string), size):
-        cell_characters = list(string[i:i+size])
+        cell_characters = list(string[i:i + size])
         row = [int(character) for character in cell_characters]
         grid.append(row)
 

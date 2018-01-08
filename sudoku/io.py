@@ -9,7 +9,7 @@ def from_file(filename, problem_size=9):
     """Creates sudoku problems from a file.
 
     Args:
-        filename (str): A file that contains one line per problem. All problems
+        filename (str): A file that contains one problem per line. All problems
             must be the same size. The line consists of ints in 0-9, where 0
             denotes an empty cell and any other number is a filled cell. The
             cells in the string are ordered top to bottom and left to right.

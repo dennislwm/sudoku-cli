@@ -76,16 +76,16 @@ class Solver:
             if self.size != number_of_columns:
                 raise InvalidProblemError('problem is not a square grid')
 
-    def _is_valid_move(self, row, column, value):
-        return not self._used_in_row(row, value) and \
-               not self._used_in_column(column, value) and \
-               not self._used_in_box(row, column, value)
-
     def _next_empty_cell(self):
         for row in range(self.size):
             for column in range(self.size):
                 if self.solution[row][column] == 0:
                     return (row, column)
+
+    def _is_valid_move(self, row, column, value):
+        return not self._used_in_row(row, value) and \
+            not self._used_in_column(column, value) and \
+            not self._used_in_box(row, column, value)
 
     def _used_in_row(self, row, value):
         return value in self.solution[row]
