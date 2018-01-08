@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
@@ -10,13 +10,14 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='sudoku-cli',
-    version='0.1',
+    version='0.2',
     description='A CLI for solving Sudoku',
     long_description=long_description,
     url='https://github.com/lukegrecki/sudoku',
     author='Luke Grecki',
     author_email='lukegrecki@gmail.com',
     keywords='sudoku',
+    packages=find_packages(exclude=['tests*']),
     install_requires=[
         'Click',
     ],
@@ -26,6 +27,6 @@ setup(
     },
     entry_points='''
         [console_scripts]
-        sudoku=cli:sudoku
+        sudoku=sudoku.cli:sudoku
     '''
 )

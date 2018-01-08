@@ -2,8 +2,8 @@
 import click
 
 # local imports
-from sudoku.io import from_file, to_file, to_stdout
-from sudoku.solver import Solver
+from .io import from_file, to_file, to_stdout
+from .solver import Solver
 
 
 @click.command()
