@@ -7,6 +7,7 @@ import click
 # local imports
 from .io import from_file, to_file, to_stdout
 from .solver import Solver
+from .exceptions import InvalidProblemError
 
 
 @click.command()
@@ -38,8 +39,12 @@ def sudoku(input_file, output_file, size):
     if output_file:
         solutions = []
 
-    for problem in problems:
-        solution = Solver(problem).solve()
+    for i, problem in enumerate(problems):
+        try:
+            solution = Solver(problem).solve()
+        except InvalidProblemError as e:
+            sys.exit('Error: {} on line {}'.format(e, i + 1))
+
         if output_file:
             sys.stdout.write('.')
             sys.stdout.flush()
