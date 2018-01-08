@@ -20,11 +20,18 @@ from .solver import Solver
     type=str,
     help='File to write solutions to.'
 )
-def sudoku(input_file, output_file):
+@click.option(
+    '--size',
+    '-s',
+    type=int,
+    default=9,
+    help='Size of the encoded sudoku problems. Defaults to 9.'
+)
+def sudoku(input_file, output_file, size):
     """A command line tool for taking a file encoding sudoku problems and
     writing their solutions to either stdout (by default) or an output file.
     """
-    problems = from_file(input_file)
+    problems = from_file(input_file, size)
     if output_file:
         solutions = []
 
