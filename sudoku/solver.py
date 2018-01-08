@@ -20,13 +20,19 @@ class Solver:
             problem (list of lists of ints): This list characterizes a sudoku
                 grid. The ints are in 0-9, where 0 denotes an empty cell and
                 any other number is a filled cell.
+
+        Raises:
+            InvalidProblemError: If `problem` isn't a valid sudoku grid.
         """
         self.problem = problem
         self.size = len(self.problem)
         self.box_size = int(math.sqrt(self.size))
+
+        self._validate_problem()
+
         self.solution = copy.deepcopy(problem)
 
-    def solve(self, validate=False):
+    def solve(self):
         """Attempts to solves the sudoku problem recursively with backtracking.
         We attempt to fill in each empty cell successively with one of the
         available options, and return to change previous cells if we are no
@@ -38,13 +44,7 @@ class Solver:
 
         Returns:
             The solution grid if successful, False otherwise.
-
-        Raises:
-            InvalidProblemError: If `problem` isn't a valid sudoku grid.
         """
-        if validate:
-            self._validate_problem()
-
         next_empty_cell = self._next_empty_cell()
 
         if not next_empty_cell:

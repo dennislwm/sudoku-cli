@@ -14,7 +14,7 @@ def benchmark(filename):
 
     for problem in problems:
         start = time.time()
-        Solver(problem).solve(validate=True)
+        Solver(problem).solve()
         finish = time.time()
         durations.append(finish - start)
 

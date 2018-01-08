@@ -36,7 +36,7 @@ def sudoku(input_file, output_file, size):
         solutions = []
 
     for problem in problems:
-        solution = Solver(problem).solve(validate=True)
+        solution = Solver(problem).solve()
         if output_file:
             solutions.append(solution)
         else:

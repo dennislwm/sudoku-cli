@@ -99,10 +99,8 @@ class TestSolver(unittest.TestCase):
             [0,0,0]
         ]
 
-        solver = Solver(invalid_problem)
-
         with self.assertRaises(InvalidProblemError):
-            solver.solve(validate=True)
+            Solver(invalid_problem)
 
     def test_raises_an_error_when_the_size_is_not_a_square(self):
         invalid_problem = [
@@ -110,10 +108,8 @@ class TestSolver(unittest.TestCase):
             [0,0]
         ]
 
-        solver = Solver(invalid_problem)
-
         with self.assertRaises(InvalidProblemError):
-            solver.solve(validate=True)
+            Solver(invalid_problem)
 
     def test_raises_an_error_when_a_row_is_not_a_list(self):
         invalid_problem = [
@@ -121,10 +117,8 @@ class TestSolver(unittest.TestCase):
             [0,0]
         ]
 
-        solver = Solver(invalid_problem)
-
         with self.assertRaises(InvalidProblemError):
-            solver.solve(validate=True)
+            Solver(invalid_problem)
 
 
 if __name__ == '__main__':
