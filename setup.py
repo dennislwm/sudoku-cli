@@ -17,7 +17,7 @@ setup(
     author='Luke Grecki',
     author_email='lukegrecki@gmail.com',
     keywords='sudoku',
-    packages=find_packages(exclude=['tests*']),
+    packages=find_packages(exclude=['tests*', 'benchmarks*']),
     install_requires=[
         'Click',
     ],

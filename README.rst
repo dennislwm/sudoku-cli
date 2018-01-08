@@ -88,3 +88,9 @@ To install the package locally for testing:
 ::
 
   make install
+
+To run the benchmarks:
+
+::
+
+  make benchmark
