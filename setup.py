@@ -13,7 +13,7 @@ setup(
     version='0.2',
     description='A CLI for solving Sudoku',
     long_description=long_description,
-    url='https://github.com/lukegrecki/sudoku',
+    url='https://github.com/lukegrecki/sudoku-cli',
     author='Luke Grecki',
     author_email='lukegrecki@gmail.com',
     keywords='sudoku',
