@@ -4,6 +4,13 @@ sudoku-cli
 
 A CLI tool for solving sudoku puzzles.
 
+Installation
+============
+
+::
+
+  pip install sudoku-cli
+
 Commands
 ========
 
