@@ -6,8 +6,8 @@ import math
 from .exceptions import InvalidProblemError
 
 
-class Solver:
-    """A class for solving sudoku problems.
+class BaseSolver:
+    """An abstract class to be inherited by any solver.
     """
 
     def __init__(self, problem):
@@ -32,15 +32,33 @@ class Solver:
 
         self.solution = copy.deepcopy(problem)
 
+    def _validate_problem(self):
+        square_root = math.sqrt(self.size)
+        if square_root != self.box_size:
+            raise InvalidProblemError('problem size is not a square')
+
+        for row in self.problem:
+            if not isinstance(row, list):
+                raise InvalidProblemError('problem row is not well defined')
+
+            number_of_columns = len(row)
+            if self.size != number_of_columns:
+                raise InvalidProblemError('problem is not a square grid')
+
+    def solve(self):
+        raise NotImplementedError
+
+
+class Solver(BaseSolver):
+    """A class for solving sudoku problems by a brute force approach.
+    """
+
     def solve(self):
         """Attempts to solves the sudoku problem recursively with backtracking.
         We attempt to fill in each empty cell successively with one of the
         available options, and return to change previous cells if we are no
         longer able to make valid moves. Having made only valid moves, we stop
         when the grid is completely filled.
-
-        Args:
-            validate (bool): Determines whether to validate the problem.
 
         Returns:
             The solution grid if successful, False otherwise.
@@ -62,19 +80,6 @@ class Solver:
                     self.solution[row][column] = 0
 
         return False
-
-    def _validate_problem(self):
-        square_root = math.sqrt(self.size)
-        if square_root != self.box_size:
-            raise InvalidProblemError('problem size is not a square')
-
-        for row in self.problem:
-            if not isinstance(row, list):
-                raise InvalidProblemError('problem row is not well defined')
-
-            number_of_columns = len(row)
-            if self.size != number_of_columns:
-                raise InvalidProblemError('problem is not a square grid')
 
     def _next_empty_cell(self):
         for row in range(self.size):

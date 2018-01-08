@@ -3,8 +3,49 @@ import unittest
 import copy
 
 # local imports
-from sudoku.solver import Solver
+from sudoku.solver import BaseSolver, Solver
 from sudoku.exceptions import InvalidProblemError
+
+
+class TestBaseSolver(unittest.TestCase):
+    def test_raises_an_error_for_non_square_problems(self):
+        invalid_problem = [
+            [0,0,0],
+            [0,0,0]
+        ]
+
+        with self.assertRaises(InvalidProblemError):
+            BaseSolver(invalid_problem)
+
+    def test_raises_an_error_when_the_size_is_not_a_square(self):
+        invalid_problem = [
+            [0,0],
+            [0,0]
+        ]
+
+        with self.assertRaises(InvalidProblemError):
+            BaseSolver(invalid_problem)
+
+    def test_raises_an_error_when_a_row_is_not_a_list(self):
+        invalid_problem = [
+            '00',
+            [0,0]
+        ]
+
+        with self.assertRaises(InvalidProblemError):
+            BaseSolver(invalid_problem)
+
+    def test_solve_raises_an_error(self):
+        problem = [
+            [0,1,0,0],
+            [4,0,0,3],
+            [1,0,0,2],
+            [0,0,3,0]
+        ]
+        solver = BaseSolver(problem)
+
+        with self.assertRaises(NotImplementedError):
+            solver.solve()
 
 
 class TestSolver(unittest.TestCase):
@@ -92,33 +133,6 @@ class TestSolver(unittest.TestCase):
         solution = solver.solve()
 
         self.assertEqual(solution, False)
-
-    def test_raises_an_error_for_non_square_problems(self):
-        invalid_problem = [
-            [0,0,0],
-            [0,0,0]
-        ]
-
-        with self.assertRaises(InvalidProblemError):
-            Solver(invalid_problem)
-
-    def test_raises_an_error_when_the_size_is_not_a_square(self):
-        invalid_problem = [
-            [0,0],
-            [0,0]
-        ]
-
-        with self.assertRaises(InvalidProblemError):
-            Solver(invalid_problem)
-
-    def test_raises_an_error_when_a_row_is_not_a_list(self):
-        invalid_problem = [
-            '00',
-            [0,0]
-        ]
-
-        with self.assertRaises(InvalidProblemError):
-            Solver(invalid_problem)
 
 
 if __name__ == '__main__':
