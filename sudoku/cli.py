@@ -54,6 +54,7 @@ def sudoku(input_file, output_file, size, ignore):
         except InvalidProblemError as e:
             if not ignore:
                 sys.exit('Error: {} on line {}'.format(e, i + 1))
+            solution = None
 
         if not ignore and not solution:
             sys.exit('Error: unsolvable problem on line {}'.format(i + 1))
