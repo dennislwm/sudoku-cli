@@ -11,13 +11,7 @@ from .exceptions import InvalidProblemError
 
 
 @click.command()
-@click.option(
-    '--input_file',
-    '-i',
-    required=True,
-    type=str,
-    help='File containing encoded sudoku problems.'
-)
+@click.argument('input_file')
 @click.option(
     '--output_file',
     '-o',
@@ -34,6 +28,9 @@ from .exceptions import InvalidProblemError
 def sudoku(input_file, output_file, size):
     """A command line tool for taking a file encoding sudoku problems and
     writing their solutions to either stdout (by default) or an output file.
+
+    By default it exits with a message after encountering either an invalid
+    problem or an unsolvable problem.
     """
     problems = from_file(input_file, size)
     if output_file:
