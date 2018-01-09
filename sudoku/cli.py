@@ -25,7 +25,14 @@ from .exceptions import InvalidProblemError
     default=9,
     help='Size of the encoded sudoku problems. Defaults to 9.'
 )
-def sudoku(input_file, output_file, size):
+@click.option(
+    '--ignore',
+    '-i',
+    is_flag=True,
+    help='Silently ignores all errors. Writes blank lines for unworkable \
+problems.'
+)
+def sudoku(input_file, output_file, size, ignore):
     """A command line tool for taking a file encoding sudoku problems and
     writing their solutions to either stdout (by default) or an output file.
 
@@ -40,9 +47,10 @@ def sudoku(input_file, output_file, size):
         try:
             solution = Solver(problem).solve()
         except InvalidProblemError as e:
-            sys.exit('Error: {} on line {}'.format(e, i + 1))
+            if not ignore:
+                sys.exit('Error: {} on line {}'.format(e, i + 1))
 
-        if not solution:
+        if not ignore and not solution:
             sys.exit('Error: unsolvable problem on line {}'.format(i + 1))
 
         if output_file:

@@ -2,18 +2,19 @@ def serialize(grid):
     """Serializes sudoku grids into a string.
 
     Args:
-        grid (list of lists of ints): This list characterizes a sudoku
-            grid. The ints are in 0-9, where 0 denotes an empty cell and any
-            other number is a filled cell.
+        grid (list, None): This list characterizes a sudoku grid. The ints are
+        in 0-9, where 0 denotes an empty cell and any other number is a filled
+        cell.
 
     Returns:
         str: This string represents a walk through the grid from top to bottom
             and left to right.
     """
     string = ''
-    for row in grid:
-        for cell in row:
-            string += str(cell)
+    if grid:
+        for row in grid:
+            for cell in row:
+                string += str(cell)
 
     return string
 

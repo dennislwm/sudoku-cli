@@ -18,15 +18,19 @@ The help page for the ``sudoku`` command is a good overview:
 
 ::
 
-  Usage: sudoku [OPTIONS]
+  Usage: sudoku [OPTIONS] INPUT_FILE
 
     A command line tool for taking a file encoding sudoku problems and writing
     their solutions to either stdout (by default) or an output file.
 
+    By default it exits with a message after encountering either an invalid
+    problem or an unsolvable problem.
+
   Options:
-    -i, --input_file TEXT   File containing encoded sudoku problems.  [required]
     -o, --output_file TEXT  File to write solutions to.
     -s, --size INTEGER      Size of the encoded sudoku problems. Defaults to 9.
+    -i, --ignore            Silently ignores all errors. Writes blank lines for
+                            unworkable problems.
     --help                  Show this message and exit.
 
 

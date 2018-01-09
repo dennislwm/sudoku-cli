@@ -14,6 +14,11 @@ class TestSerialization(unittest.TestCase):
 
         self.assertEqual(serialize(grid), '2001')
 
+    def test_it_serializes_none(self):
+        grid = None
+
+        self.assertEqual(serialize(grid), '')
+
     def test_it_deserializes_correctly(self):
         string = '2001'
         expected_grid = [
