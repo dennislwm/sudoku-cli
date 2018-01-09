@@ -10,8 +10,8 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='sudoku-cli',
-    version='0.4',
-    description='A CLI for solving Sudoku',
+    version='0.5',
+    description='A CLI tool for solving sudoku puzzles.',
     long_description=long_description,
     url='https://github.com/lukegrecki/sudoku-cli',
     author='Luke Grecki',
