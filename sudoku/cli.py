@@ -11,7 +11,7 @@ from .exceptions import InvalidProblemError
 
 
 @click.command()
-@click.argument('input_file')
+@click.argument('input_file', type=click.Path(exists=True))
 @click.option(
     '--output_file',
     '-o',
