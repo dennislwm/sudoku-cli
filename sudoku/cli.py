@@ -45,6 +45,9 @@ def sudoku(input_file, output_file, size):
         except InvalidProblemError as e:
             sys.exit('Error: {} on line {}'.format(e, i + 1))
 
+        if not solution:
+            sys.exit('Error: unsolvable problem on line {}'.format(i + 1))
+
         if output_file:
             sys.stdout.write('.')
             sys.stdout.flush()

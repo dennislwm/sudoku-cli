@@ -132,7 +132,7 @@ class TestSolver(unittest.TestCase):
         solver = Solver(unsolvable_problem)
         solution = solver.solve()
 
-        self.assertEqual(solution, False)
+        self.assertEqual(solution, None)
 
 
 if __name__ == '__main__':

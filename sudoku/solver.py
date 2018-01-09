@@ -61,7 +61,7 @@ class Solver(BaseSolver):
         when the grid is completely filled.
 
         Returns:
-            The solution grid if successful, False otherwise.
+            The solution grid if successful, None if the problem is unsolvable.
         """
         next_empty_cell = self._next_empty_cell()
 
@@ -79,7 +79,7 @@ class Solver(BaseSolver):
                 else:
                     self.solution[row][column] = 0
 
-        return False
+        return None
 
     def _next_empty_cell(self):
         for row in range(self.size):
