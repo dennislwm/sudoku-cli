@@ -27,8 +27,8 @@ from .exceptions import InvalidProblemError
 problems.'
 )
 def sudoku(input_file, size, ignore):
-    """A command line tool for taking an input file descriptor encoding sudoku
-    problems and writing their solutions to stdout.
+    """A command line tool for taking an input file encoding sudoku problems
+    and writing their solutions to stdout.
 
     The input file consists of one sudoku problem per line, where each line is
     a string of integers in the range 0-9. A 0 denotes an empty location while
