@@ -38,20 +38,20 @@ def sudoku(input_file, size, ignore):
     By default it exits with a message after encountering either an invalid
     problem or an unsolvable problem.
     """
-    for i, line in enumerate(input_file):
+    for i, line in enumerate(input_file, 1):
         problem = deserialize(line.strip(), size)
 
         try:
             solution = Solver(problem).solve()
         except InvalidProblemError as e:
             if not ignore:
-                sys.exit('Error: {} on line {}'.format(e, i + 1))
+                sys.exit('Error: {} on line {}'.format(e, i))
             solution = None
 
         if not ignore and not solution:
-            sys.exit('Error: unsolvable problem on line {}'.format(i + 1))
+            sys.exit('Error: unsolvable problem on line {}'.format(i))
 
-        if i >= 1:
+        if i >= 2:
             sys.stdout.write('\n')
 
         sys.stdout.write(serialize(solution))
