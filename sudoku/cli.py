@@ -51,5 +51,7 @@ def sudoku(input_file, size, ignore):
         if not ignore and not solution:
             sys.exit('Error: unsolvable problem on line {}'.format(i + 1))
 
-        sys.stdout.write(serialize(solution) + '\n')
-        sys.stdout.flush()
+        if i >= 1:
+            sys.stdout.write('\n')
+
+        sys.stdout.write(serialize(solution))

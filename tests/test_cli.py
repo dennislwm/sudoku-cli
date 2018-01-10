@@ -43,7 +43,7 @@ class TestCLI(unittest.TestCase):
             sudoku,
             ['-i', 'tests/fixtures/invalid_problem.txt']
         )
-        expected_output = '\n'
+        expected_output = ''
 
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(result.output, expected_output)
@@ -54,7 +54,7 @@ class TestCLI(unittest.TestCase):
             sudoku,
             ['-i', 'tests/fixtures/unsolvable_problem.txt']
         )
-        expected_output = '\n'
+        expected_output = ''
 
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(result.output, expected_output)
