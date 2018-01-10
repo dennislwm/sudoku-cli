@@ -18,8 +18,9 @@ class BaseSolver:
 
         Args:
             problem (list of lists of ints): This list characterizes a sudoku
-                grid. The ints are in 0-9, where 0 denotes an empty cell and
-                any other number is a filled cell.
+                grid. The top level list is a list of rows, each of which is a
+                list of ints. The ints are in 0-9, where 0 denotes an empty
+                cell and any other number is a filled cell.
 
         Raises:
             InvalidProblemError: If `problem` isn't a valid sudoku grid.
