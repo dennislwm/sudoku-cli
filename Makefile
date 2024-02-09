@@ -17,3 +17,7 @@ test:
 
 benchmark:
 	@python benchmarks/benchmarks.py
+
+run:
+	@. ./bin/sudokurc.sh && sudoku_assert || exit 1
+	@. ./bin/sudokurc.sh && time sudoku_fold $(puzzle)

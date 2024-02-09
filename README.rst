@@ -54,7 +54,7 @@ So this board:
   |0,0,4| |0,0,0| |0,0,0|
   |5,1,7| |2,0,0| |9,0,0|
   |6,0,2| |0,0,0| |3,7,0|
-  
+
   |1,0,0| |8,0,4| |0,2,0|
   |7,0,6| |0,0,0| |8,1,0|
   |3,0,0| |0,9,0| |0,0,0|
@@ -68,7 +68,7 @@ Would be encoded by this string:
 Development
 ===========
 
-A Makefile is included to simplify the running of some common commands. 
+A Makefile is included to simplify the running of some common commands.
 
 To install the requirements for local development:
 
@@ -93,3 +93,29 @@ To run the benchmarks:
 ::
 
   make benchmark
+
+To solve a puzzle:
+
+::
+
+  make run puzzle=090000006000960485000581000004000000517200900602000370100804020706000810300090000
+
+::
+
+  Solved
+  ===========
+  895|742|136
+  271|963|485
+  463|581|792
+  ---+---+---
+  934|617|258
+  517|238|964
+  682|459|371
+  ---+---+---
+  159|874|623
+  746|325|819
+  328|196|547
+
+  real    0m0.044s
+  user    0m0.034s
+  sys     0m0.015s
