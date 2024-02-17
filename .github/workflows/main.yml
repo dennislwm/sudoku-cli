@@ -31,4 +31,5 @@ jobs:
         echo "::set-output name=changed::$(git diff --name-only HEAD^ HEAD | grep '^examples/puzzle.txt$' || echo 'false')"
     - name: Run application
       run: |
-        python -m sudoku.cli examples/puzzle.txt | fold -w9 | sed 's/./&|/6' | sed 's/./&|/3' | awk 'NR==7{print "---+---+---"}1' | awk 'NR==4{print "---+---+---"}1' | awk 'NR==1{print "==========="}1'
+        python -m sudoku.cli examples/puzzle.txt | fold -w9 | sed 's/./&|/6' | sed 's/./&|/3' | awk 'NR==7{print "---+---+---"}1' | awk 'NR==4{print "---+---+---"}1' | awk 'NR==1{print "==========="}1' > examples/result.txt
+        cat examples/result.txt
