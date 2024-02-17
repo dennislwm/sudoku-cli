@@ -1,3 +1,7 @@
 *.pyc
-*.{egg-info,aider,env*}
-{venv,dist,.coverage}
+*.egg-info/
+venv/
+.coverage
+dist/
+.aider*
+.env*
