@@ -24,7 +24,6 @@ jobs:
         rm -f .coverage
         coverage run --source=sudoku/ -m unittest discover -s tests/
         coverage report -m
-        python benchmarks/benchmarks.py
     - name: Check for changes in puzzle.txt
       id: checkfile
       run: |
