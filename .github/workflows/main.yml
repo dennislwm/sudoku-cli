@@ -22,12 +22,6 @@ jobs:
     - name: Run tests
       run: |
         python -m unittest discover tests
-    - name: Check for changes in puzzle.txt
-      id: checkfile
-      run: |
-        echo "::set-output name=changed::$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '^puzzle.txt$' || echo 'false')"
     - name: Run application
       run: |
-        if [[ "${{ steps.checkfile.outputs.changed }}" != "false" ]]; then
-          python -m sudoku
-        fi
+        python -m sudoku
