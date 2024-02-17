@@ -21,9 +21,8 @@ jobs:
         pip install -r requirements.txt
     - name: Run tests
       run: |
-        rm -f .coverage
-        coverage run --source=sudoku/ -m unittest discover -s tests/
-        coverage report -m
+        make install
+        make test
     - name: Check for changes in puzzle.txt
       id: checkfile
       run: |
