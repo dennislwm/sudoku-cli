@@ -26,9 +26,9 @@ jobs:
     - name: Check for changes in puzzle.txt
       id: checkfile
       run: |
-        echo "::set-output name=changed::$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '^puzzle.txt$' || echo 'false')"
+        echo "::set-output name=changed::$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '^examples/puzzle.txt$' || echo 'false')"
     - name: Run application
       run: |
         if [[ "${{ steps.checkfile.outputs.changed }}" != "false" ]]; then
-          python -m sudoku puzzle.txt | fold -w9 | sed 's/./&|/6' | sed 's/./&|/3' | awk 'NR==7{print "---+---+---"}1' | awk 'NR==4{print "---+---+---"}1' | awk 'NR==1{print "==========="}1'
+          python -m sudoku examples/puzzle.txt | fold -w9 | sed 's/./&|/6' | sed 's/./&|/3' | awk 'NR==7{print "---+---+---"}1' | awk 'NR==4{print "---+---+---"}1' | awk 'NR==1{print "==========="}1'
         fi
