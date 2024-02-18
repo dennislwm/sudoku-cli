@@ -30,7 +30,7 @@ jobs:
       run: |
         echo "::set-output name=changed::$(git diff --name-only HEAD^ HEAD | grep '^examples/puzzle.txt$' || echo 'false')"
     - name: Run application
-      if: steps.checkfile.outputs.changed != 'false'
+      # if: steps.checkfile.outputs.changed != 'false'
       run: |
         sudoku examples/puzzle.txt | fold -w9 | sed 's/./&|/6' | sed 's/./&|/3' | awk 'NR==7{print "---+---+---"}1' | awk 'NR==4{print "---+---+---"}1' | awk 'NR==1{print "==========="}1' > examples/result.txt
         git diff --quiet examples/result.txt || (git add examples/result.txt && git commit -m "Update result.txt")
