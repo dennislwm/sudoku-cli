@@ -38,4 +38,5 @@ jobs:
           git config --global user.name "Telegram Bot"
           git add examples/result.txt
           git commit -m "Update result.txt"
+          git push
         fi
